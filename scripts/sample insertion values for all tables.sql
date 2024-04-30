@@ -10,7 +10,7 @@ INSERT INTO Books (Book_ID, Title, Average_Rating, ISBN, Language_Code, Num_Page
 (9, 'Animal Farm', 3.90, '9780451526342', 'EN', 112, 80, '1945-08-17', 'Secker & Warburg', 'Political Satire', 8),
 (10, 'Jane Eyre', 4.11, '9780142437209', 'EN', 500, 65, '1847-10-16', 'Smith, Elder & Co.', 'Gothic Fiction', 4);
 
-select * from books 
+select * from books;
 
 INSERT INTO Users (User_ID, Name, Email, Password, Created_At) VALUES
 (1, 'John Doe', 'johndoe@example.com', 'password123', '2023-01-15'),
@@ -24,7 +24,7 @@ INSERT INTO Users (User_ID, Name, Email, Password, Created_At) VALUES
 (9, 'Chloe Taylor', 'chloet@example.com', 'taylorpassword', '2023-09-09'),
 (10, 'Brandon Anderson', 'brandon@example.com', 'andersonpassword', '2023-10-23');
 
-select * from Users
+select * from Users;
 
 INSERT INTO Supplier (Supplier_ID, Supplier_Name, Contact_Number, Address, Email) VALUES
 (1, 'Global Books Ltd.', 1234567890, '1234 Library Ave, Booktown, BK 12345', 'contact@globalbooks.com'),
@@ -38,14 +38,14 @@ INSERT INTO Supplier (Supplier_ID, Supplier_Name, Contact_Number, Address, Email
 (9, 'Epic Editions', 1234567898, '2345 Saga Street, Epicville, EV 90123', 'orders@epiceditions.com'),
 (10, 'Narrative Networks', 1234567899, '1357 Plot Pl, Tale Town, TT 01234', 'sales@narrativenetworks.com');
 
- select * from supplier
+ select * from supplier;
  
  INSERT INTO Admin (Admin_ID, Name, Email, Password, Created_At) VALUES
 (1, 'Alex Johnson', 'alex.johnson@example.com', 'alex11', '2022-01-01'),
 (2, 'Jamie Smith', 'jamie.smith@example.com', 'jamie123', '2022-02-01'),
 (3, 'Taylor Brown', 'taylor.brown@example.com', 'taylor333', '2022-03-01');
 
-select * from admin
+select * from admin;
 
 INSERT INTO Author (ID, Author_name) VALUES
 (1, 'William Shakespeare'),
@@ -59,7 +59,7 @@ INSERT INTO Author (ID, Author_name) VALUES
 (9, 'Agatha Christie'),
 (10, 'J.R.R. Tolkien');
 
-select * from author
+select * from author;
 
 INSERT INTO Book_Author (Book_ID, Author_ID) VALUES
 (1, 8),  
@@ -72,7 +72,7 @@ INSERT INTO Book_Author (Book_ID, Author_ID) VALUES
 (9, 8),  
 (10, 10); 
 
-select * from Book_author
+select * from Book_author;
 
 INSERT INTO Location (Book_ID, Aisle_Char, Rack, Count_Left) VALUES
 (1, 'A', 1, 3),
@@ -85,7 +85,7 @@ INSERT INTO Location (Book_ID, Aisle_Char, Rack, Count_Left) VALUES
 (8, 'D', 2, 5),
 (9, 'E', 1, 8),
 (10, 'E', 2, 4);
- select * from location
+ select * from location;
  
  INSERT INTO Transaction (Transaction_ID, User_ID, Book_ID, Borrow_Date, Return_Due_Date, Returned_Date) VALUES
 (1, 1, 1, '2023-01-01', '2023-01-15', '2023-01-14'),
@@ -146,6 +146,20 @@ INSERT INTO Books_Ordered (Order_ID, Book_ID, Quantity) VALUES
 (8, 3, 2),
 (9, 2, 3),
 (10, 1, 4);
+
+INSERT INTO Fines (User_ID, Fine_Paid, Total_Fine, Amount_Due)
+VALUES
+  (1, 10.50, 25.00, 14.50),
+  (2, 5.00, 15.00, 10.00),
+  (3, 8.75, 20.00, 11.25),
+  (4, 12.00, 30.00, 18.00),
+  (5, 3.25, 10.00, 6.75),
+  (6, 9.50, 25.00, 15.50),
+  (7, 6.75, 15.00, 8.25),
+  (8, 11.25, 30.00, 18.75),
+  (9, 7.50, 20.00, 12.50),
+  (10, 4.00, 12.00, 8.00);
+
 
 
 
