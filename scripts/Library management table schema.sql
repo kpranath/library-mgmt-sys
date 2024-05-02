@@ -2,11 +2,9 @@ CREATE TABLE Books (
     Book_ID INT PRIMARY KEY,
     Title VARCHAR(100),
     Average_Rating FLOAT,
-    ISBN VARCHAR(100),
     Language_Code VARCHAR(100),
     Num_Pages INT,
     Ratings_Count INT,
-    Publication_Date DATE,
     Publisher VARCHAR(255),
     Genre VARCHAR(255),
     Book_Count INT
