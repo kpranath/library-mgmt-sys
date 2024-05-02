@@ -1,6 +1,6 @@
 CREATE TABLE Books (
     Book_ID INT PRIMARY KEY,
-    Title VARCHAR(100),
+    Title VARCHAR(256),
     Average_Rating FLOAT,
     Language_Code VARCHAR(100),
     Num_Pages INT,
