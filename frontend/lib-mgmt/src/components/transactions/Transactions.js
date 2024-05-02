@@ -1,51 +1,64 @@
-import React from 'react';
-import Navigation from '../Navbar/Navigation';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useTable } from 'react-table';
 
-class Transactions extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      borrowedBooks: []
-    };
-  }
+function Transactions() {
+  const [transactions, setTransactions] = useState([]);
 
-  componentDidMount() {
-    fetch('/api/borrowed-books')
-      .then(response => response.json())
-.then(data => this.setState({ borrowedBooks: data }));
-  }
+  useEffect(() => {
+    axios.get('/api/transactions').then((response) => {
+      setTransactions(response.data);
+    });
+  }, []);
 
-  handleReturnBook = (bookId) => {
-    // Make a request to your Node.js API endpoint to initiate the return process
-    fetch(`/api/books/${bookId}/return`)
-      .then(response => response.json())
-      .then(data => {
-        // Update the borrowed books data in the state
-        const updatedBorrowedBooks = this.state.borrowedBooks.filter(book => book.id !== bookId);
-        this.setState({ borrowedBooks: updatedBorrowedBooks });
-      });
-  }
+  const columns = [
+    {
+      Header: 'Title',
+      accessor: 'book.title',
+    },
+    {
+      Header: 'Author',
+      accessor: 'book.author',
+    },
+    {
+      Header: 'Transaction Date',
+      accessor: 'transactionDate',
+    },
+  ];
 
-  render() {
-    return (
-      <div>
-        <Navigation/>
-        <h1>Transactions</h1>
-        <ul>
-          {this.state.borrowedBooks.map((book) => (
-            <li key={book.id}>
-              <h2>{book.title}</h2>
-              <p>Author: {book.author}</p>
-              <p>Borrowed By: {book.borrowerName}</p>
-              <button onClick={() => this.handleReturnBook(book.id)}>
-                Return Book
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+  } = useTable({ columns, data: transactions });
+
+  return (
+    <table {...getTableProps()}>
+      <thead>
+        {headerGroups.map((headerGroup) => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column) => (
+              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <tbody {...getTableBodyProps()}>
+        {rows.map((row) => {
+          prepareRow(row);
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map((cell) => (
+                <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              ))}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
 }
 
 export default Transactions;
