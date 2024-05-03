@@ -11,13 +11,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER update_fines_trigger14
+CREATE TRIGGER update_fines_trigger_function12
 AFTER UPDATE ON Transaction
 FOR EACH ROW
 EXECUTE FUNCTION update_fines_trigger_function();
-
-
-INSERT INTO Transaction (User_ID, Book_ID, Borrow_Date, Return_Due_Date, Returned_Date)
-VALUES (4, 18, '2024-05-03', '2024-05-10', '2024-05-12');
-
-select * from fines
