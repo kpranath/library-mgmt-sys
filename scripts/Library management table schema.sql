@@ -95,4 +95,10 @@ CREATE TABLE Books_Ordered (
     FOREIGN KEY (Order_ID) REFERENCES Order_table(Order_ID),
     FOREIGN KEY (Book_ID) REFERENCES Books(Book_ID)
 );
+CREATE SEQUENCE IF NOT EXISTS transaction_id_seq1 START 30;
 
+-- Alter the Transaction table to use the sequence for Transaction_ID
+ALTER TABLE Transaction
+    ALTER COLUMN Transaction_ID SET DEFAULT nextval('transaction_id_seq1');
+INSERT INTO Transaction (User_ID, Book_ID, Borrow_Date, Return_Due_Date, Returned_Date)
+VALUES (1, 29, '2024-05-03', '2024-05-10', NULL);
